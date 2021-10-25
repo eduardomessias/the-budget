@@ -11,9 +11,9 @@ import { useState } from 'react'
 
 
 export async function getStaticProps() {
-  const response = await fetch('/api/goals')
-  const jsonResponse = await response.json()
-  const data = jsonResponse.data
+  //const response = await fetch('/api/goals')
+  //const jsonResponse = await response.json()
+  const data = []
   return {
     props: {
       data      
