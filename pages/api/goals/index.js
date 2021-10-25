@@ -1,7 +1,7 @@
 import dbConnect from '../../../lib/mongo'
 import Goal from '../../../models/goal'
 
-export default async (req,res) => {
+export default async function Goals (req,res) {
     await dbConnect ()    
     try {
         const goals = await Goal.find ()

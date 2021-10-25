@@ -1,4 +1,4 @@
-export default function ({ onSubmitHandler }) {
+export default function FormCreateGoal ({ onSubmitHandler }) {
     return (
         <form action="http://localhost:3000/api/goals/create" method="POST" onSubmit={onSubmitHandler}>
             <h2 className="text-gray-900 text-lg mb-1 font-medium title-font">Set a new goal</h2>

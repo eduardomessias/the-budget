@@ -1,4 +1,4 @@
-export default function ({ label, description, category, deadline, linkToDetails }) {
+export default function BudgetEntry ({ label, description, category, deadline, linkToDetails }) {
     return (
         <div className="py-8 flex flex-wrap md:flex-nowrap">
             <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">

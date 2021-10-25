@@ -1,4 +1,4 @@
-export default function ({ caption, content }) {
+export default function SimpleListItem ({ caption, content }) {
     return (
         <div className="py-8 flex flex-wrap md:flex-nowrap">
             <div className="md:flex-grow">

@@ -1,7 +1,7 @@
 import styles from './layout.module.css'
 
 
-export default function ({children}) {
+export default function Layout ({children}) {
     return (
         <main className={styles.layout}>
             {children}
