@@ -13,7 +13,7 @@ import { useState } from 'react'
 
 
 export async function getStaticProps() {
-  const res = await fetch('http://localhost:3000/api/goals')
+  const res = await fetch('/api/goals')
   const resObj = await res.json()
   const goals = resObj.data
   return {
