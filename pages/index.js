@@ -7,10 +7,9 @@ import SimpleListItem from '../components/simpleListItem'
 
 
 export async function getStaticProps() {
-  // const response = await fetch(process.env.API_ENDPOINT + "/api/budgets")
-  // const jsonResponse = await response.json()
-  // const data = jsonResponse.data
-  const data = []
+  const response = await fetch(process.env.API_ENDPOINT + "/api/budgets")
+  const jsonResponse = await response.json()
+  const data = jsonResponse.data
   return {
     props: {
       data
