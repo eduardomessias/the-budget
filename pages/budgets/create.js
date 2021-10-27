@@ -4,15 +4,15 @@ import HeaderNav from '../../components/headerNav'
 import HeaderNavLink from '../../components/headerNavLink'
 import HeaderButton from '../../components/headerButton'
 import ActionPane from '../../components/actionPane'
-import FormCreateGoal from '../../components/formCreateGoal'
+import FormCreateBudget from '../../components/formCreateBudget'
 
 
 function cancelCreation () {
-  window.location = '/goals'
+  window.location = '/'
 }
 
 
-function submitGoal (event) {
+function submitBudget (event) {
   event.preventDefault ()
   const fetchOpts = {
     method: "POST",
@@ -20,18 +20,16 @@ function submitGoal (event) {
       "Content-Type":"application/json"
     },
     body: JSON.stringify ({
-      label: event.target.label.value,
       from: event.target.from.value,
-      to: event.target.to.value,
-      weight: event.target.weight.value
+      to: event.target.to.value
     })
   }
-  fetch ('/api/goals/create', fetchOpts)
-  window.location = '/goals'
+  fetch ('/api/budgets/create', fetchOpts)
+  window.location = '/'
 }
 
 
-export default function CreateGoal () { 
+export default function CreateBudget () { 
   return (
     <Layout>
       <Header>
@@ -41,7 +39,7 @@ export default function CreateGoal () {
         <HeaderButton onClickHandler={cancelCreation} text="Cancel"/>
       </Header>
       <ActionPane>
-        <FormCreateGoal onSubmitHandler={submitGoal}  />
+        <FormCreateBudget onSubmitHandler={submitBudget}  />
       </ActionPane>
     </Layout>
   )

@@ -1,13 +1,10 @@
 import Layout from '../../components/layout'
 import Header from '../../components/header'
 import HeaderNav from '../../components/headerNav'
-// import HeaderNavLink from '../../components/headerNavLink'
+import HeaderNavLink from '../../components/headerNavLink'
 import HeaderButton from '../../components/headerButton'
-import SimpleListContainer from '../../components/simpleListContainer'
+import SimpleList from '../../components/simpleList'
 import SimpleListItem from '../../components/simpleListItem'
-
-
-import { useState } from 'react'
 
 
 export async function getStaticProps() {
@@ -16,27 +13,34 @@ export async function getStaticProps() {
   const data = jsonResponse.data
   return {
     props: {
-      data      
+      data
     }
   }
 }
 
 
-export default function Goals({data}) {
-  function createGoal() {
-    window.location = '/goals/create'
-  }
+function createGoal () {
+  window.location = '/goals/create'
+}
+
+
+export default function Goals ({data}) {
   return (
     <Layout>
       <Header>
         <HeaderNav>
-          {/* <HeaderNavLink caption="First link" /> */}
+          <HeaderNavLink caption="Back home" link="/" />
         </HeaderNav>
         <HeaderButton onClickHandler={createGoal} text="Set new goal"/>
       </Header>
-      <SimpleListContainer title="Budget goals" subTitle="FROM 1st JAN TO 31st DEV, 2022">
-        {data.map(goal => <SimpleListItem key={goal._id} caption={goal.label} content={`To be completed by ${new Date(goal.to).toLocaleDateString('pt-BR')}`} />)}
-      </SimpleListContainer>
+      <SimpleList title="Budget goals" subTitle="FROM 1st JAN TO 31st DEV, 2022">
+        {data.map (goal => 
+          <SimpleListItem key={goal._id} caption={goal.label}>
+            <p>{`To be completed by ${new Date(goal.to).toLocaleDateString('pt-BR')}`}</p>
+            <p>{`${goal.weight}`}</p>
+          </SimpleListItem>
+        )}
+      </SimpleList>
     </Layout>
   )
 }

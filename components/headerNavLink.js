@@ -1,5 +1,7 @@
+import Link from 'next/link'
+
 export default function HeaderNavLink ({caption,link}) {
     return (
-        <a className="mr-5 hover:text-gray-900">{caption}</a>
+        <Link href={link}><a className="mr-5 hover:text-gray-900">{caption}</a></Link>
     )
 }

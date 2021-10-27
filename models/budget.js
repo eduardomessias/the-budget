@@ -1,11 +1,18 @@
 import mongoose from 'mongoose'
 
 
+const schemaOptions = {
+    timestamps: { 
+        createdAt: 'created_at', 
+        updatedAt: 'updated_at' 
+    }
+}
+
+
 const BudgetSchema = new mongoose.Schema({
-    label: String,
     from: Date,
     to: Date
-})
+}, schemaOptions)
 
 
-module.exports = mongoose.models.Goal || mongoose.model ('Budget', BudgetSchema)
+module.exports = mongoose.models.Budget || mongoose.model ('Budget', BudgetSchema)
