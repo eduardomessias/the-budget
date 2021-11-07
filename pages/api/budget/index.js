@@ -5,7 +5,7 @@ import Budget from '../../../models/budget'
 export default async function handler (req,res) {
     await dbConnect ()    
     try {
-        const collection = await Budget.find ().populate ('goals')
+        const collection = await Budget.find ().populate ({path:'goals', model:'Goal'})
         res.status (200).json ({sucess:true, data:collection})
     }
     catch (e) {

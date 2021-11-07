@@ -5,7 +5,6 @@ import HeaderNavLink from '../../components/headerNavLink'
 import HeaderButton from '../../components/headerButton'
 import SimpleList from '../../components/simpleList'
 import SimpleListItem from '../../components/simpleListItem'
-import Goal from '../goal'
 
 
 const GET_ENDPOINT = `${process.env.API_ENDPOINT}/api/budget`
@@ -13,13 +12,24 @@ const GET_ENDPOINT = `${process.env.API_ENDPOINT}/api/budget`
 
 export async function getStaticProps() {
   return fetch (GET_ENDPOINT)
-    .then (response => response.json ())
+    .then (response => {
+      if (response.ok) {
+        return response.json ()
+      }
+      return Promise.reject (response.status)
+    })
     .then (json => {
-      return {
-        props: {
-          data: json.data
-        }
-      }   
+      if (json.data) {
+        return {
+          props: {
+            data: json.data
+          }
+        }   
+      }
+      return Promise.reject (json)
+    })
+    .catch (reason => {
+      return Promise.reject (reason)
     })
 }
 
@@ -29,7 +39,7 @@ function setupBudget () {
 }
 
 
-export default function Home({ data }) {
+export default function Budget({data}) {
   return (
     <Layout>
       <Header>
