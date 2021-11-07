@@ -8,15 +8,19 @@ import SimpleListItem from '../../components/simpleListItem'
 import Goal from '../goal'
 
 
+const GET_ENDPOINT = `${process.env.API_ENDPOINT}/api/budget`
+
+
 export async function getStaticProps() {
-  const response = await fetch(process.env.API_ENDPOINT + "/api/budget")
-  const responseJson = await response.json()
-  const data = responseJson.data
-  return {
-    props: {
-      data
-    }
-  }
+  return fetch (GET_ENDPOINT)
+    .then (response => response.json ())
+    .then (json => {
+      return {
+        props: {
+          data: json.data
+        }
+      }   
+    })
 }
 
 
