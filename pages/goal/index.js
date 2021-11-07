@@ -8,7 +8,7 @@ import SimpleListItem from '../../components/simpleListItem'
 
 
 export async function getStaticProps() {
-  const response = await fetch(process.env.API_ENDPOINT + "/api/goal")
+  const response = await fetch("/api/goal")
   const jsonResponse = await response.json()
   const data = jsonResponse.data
   return {
