@@ -9,10 +9,9 @@ import Goal from '../goal'
 
 
 export async function getStaticProps() {
-  // const response = await fetch(process.env.API_ENDPOINT + "/api/budget")
-  // const responseJson = await response.json()
-  // const data = responseJson.data
-  const data = []
+  const response = await fetch(process.env.API_ENDPOINT + "/api/budget")
+  const responseJson = await response.json()
+  const data = responseJson.data
   return {
     props: {
       data
