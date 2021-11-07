@@ -11,9 +11,18 @@ function cancelCreation () {
   window.location = '/'
 }
 
+async function overlapGoals (from, to) {
+  const fromDate = new Date(from).toString('YYYY-MM-DD')
+  const toDate = new Date(to).toString('YYYY-MM-DD')
+  const overlapGoals = await fetch (`/api/goal/overlap/${fromDate}..${toDate}`)
+  const overlapGoalsJson = await overlapGoals.json ()
+  return overlapGoalsJson.data
+} 
 
-function submitBudget (event) {
+
+async function submitBudget (event) {
   event.preventDefault ()
+  const goals = await overlapGoals (event.target.from.value,event.target.to.value)
   const fetchOpts = {
     method: "POST",
     headers: {
@@ -21,11 +30,12 @@ function submitBudget (event) {
     },
     body: JSON.stringify ({
       from: event.target.from.value,
-      to: event.target.to.value
+      to: event.target.to.value,
+      goals: goals
     })
   }
-  fetch ('/api/budgets/create', fetchOpts)
-  window.location = '/'
+  fetch ('/api/budget/create', fetchOpts)
+  window.location = '/budget'
 }
 
 
@@ -34,11 +44,11 @@ export default function CreateBudget () {
     <Layout>
       <Header>
         <HeaderNav>
-          <HeaderNavLink caption="Back home" link="/" />
+          <HeaderNavLink caption="Back home" link="/budget" />
         </HeaderNav>
         <HeaderButton onClickHandler={cancelCreation} text="Cancel"/>
       </Header>
-      <ActionPane>
+      <ActionPane image="/images/undraw_Time_management_re_tk5w.svg">
         <FormCreateBudget onSubmitHandler={submitBudget}  />
       </ActionPane>
     </Layout>

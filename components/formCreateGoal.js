@@ -8,12 +8,8 @@ export default function FormCreateGoal ({ onSubmitHandler }) {
                 <input type="text" id="label" name="label" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required />
             </div>
             <div className="relative mb-4">
-                <label htmlFor="from" className="leading-7 text-sm text-gray-600">From</label>
-                <input type="date" id="from" name="from" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required />
-            </div>
-            <div className="relative mb-4">
-                <label htmlFor="to" className="leading-7 text-sm text-gray-600">To</label>
-                <input type="date" id="to" name="to" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required />
+                <label htmlFor="deadline" className="leading-7 text-sm text-gray-600">Deadline</label>
+                <input type="date" id="deadline" name="deadline" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required />
             </div>
             <div className="relative mb-4">
                 <label htmlFor="weight" className="leading-7 text-sm text-gray-600">Weight</label>

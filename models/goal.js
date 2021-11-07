@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
 
 
 const schemaOptions = {
@@ -11,13 +11,17 @@ const schemaOptions = {
 
 const GoalSchema = new mongoose.Schema({
     label: String,
-    from: Date,
-    to: Date,
+    deadline: Date,
     weight: {
         type: String,
         enum: ['WHATEVER','IF POSSIBLE','HOPE SO','LOOKING FORWARD','EXTREMELY IMPORTANT'],
         default: 'WHATEVER'
-    }
+    },
+    budgets: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Budget'
+    }],
+    achieved: Boolean
 }, schemaOptions)
 
 

@@ -8,7 +8,7 @@ import SimpleListItem from '../../components/simpleListItem'
 
 
 export async function getStaticProps() {
-  const response = await fetch(process.env.API_ENDPOINT + "/api/goals")
+  const response = await fetch(process.env.API_ENDPOINT + "/api/goal")
   const jsonResponse = await response.json()
   const data = jsonResponse.data
   return {
@@ -20,11 +20,11 @@ export async function getStaticProps() {
 
 
 function createGoal () {
-  window.location = '/goals/create'
+  window.location = '/goal/submit'
 }
 
 
-export default function Goals ({data}) {
+export default function Goal ({data}) {
   return (
     <Layout>
       <Header>
@@ -36,7 +36,7 @@ export default function Goals ({data}) {
       <SimpleList title="Budget goals" subTitle="FROM 1st JAN TO 31st DEV, 2022">
         {data.map (goal => 
           <SimpleListItem key={goal._id} caption={goal.label}>
-            <p>{`To be completed by ${new Date(goal.to).toLocaleDateString('pt-BR')}`}</p>
+            <p>{`To be completed by ${new Date(goal.deadline).toLocaleDateString('pt-BR')}`}</p>
             <p>{`${goal.weight}`}</p>
           </SimpleListItem>
         )}

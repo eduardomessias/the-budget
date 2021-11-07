@@ -2,7 +2,7 @@ import dbConnect from '../../../lib/mongo'
 import Budget from '../../../models/budget'
 
 
-export default async function Create (req, res) {
+export default async function handler (req, res) {
     if (req.method === 'POST') {
         await dbConnect ()
         try {
