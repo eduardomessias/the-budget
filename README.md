@@ -1,9 +1,9 @@
 # The Budget
 
 ## model
-user
-budget
-entry
+' user
+' budget
+' entry
 ## operations
 user/create
 user/read
