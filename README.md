@@ -16,7 +16,7 @@ user/[id]/budget/delete\
 user/[id]/budget/[id]/entry/create\
 user/[id]/budget/[id]/entry/read\
 user/[id]/budget/[id]/entry/update\
-user/[id]/budget/[id]/entry/delete\
+user/[id]/budget/[id]/entry/delete
 ## tests
 
 
