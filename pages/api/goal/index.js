@@ -1,9 +1,8 @@
-import dbConnect from '../../../lib/mongo'
+import withDatabase from '../../../middleware/withDatabase'
 import Goal from '../../../models/goal'
 
 
-export default async function handler (req,res) {
-    await dbConnect ()    
+async function handler (req,res) {    
     try {
         const collection = await Goal.find ()
         res.status (200).json ({sucess:true, data:collection})
@@ -12,3 +11,6 @@ export default async function handler (req,res) {
         res.status (400).json({success:false})
     }
 }
+
+
+export default withDatabase (handler)

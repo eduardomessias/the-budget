@@ -1,11 +1,10 @@
 import styles from './layout.module.css'
 
 
-export default function Layout ({children}) {
+export default function Layout({ children }) {
     return (
-        <main className={styles.layout}>
+        <main className={styles.frederika}>
             {children}
         </main>
     )
 }
-    

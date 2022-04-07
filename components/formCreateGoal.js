@@ -1,4 +1,4 @@
-export default function FormCreateGoal ({ onSubmitHandler }) {
+export default function FormCreateGoal({ onSubmitHandler }) {
     return (
         <form onSubmit={onSubmitHandler}>
             <h2 className="text-gray-900 text-lg mb-1 font-medium title-font">Set a new goal</h2>

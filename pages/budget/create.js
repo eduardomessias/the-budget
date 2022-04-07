@@ -7,16 +7,11 @@ import ActionPane from '../../components/actionPane'
 import FormCreateBudget from '../../components/formCreateBudget'
 
 
-function cancelCreation () {
-  window.location = '/'
-}
-
 async function overlapGoals (from, to) {
-  const fromDate = new Date(from).toString('YYYY-MM-DD')
-  const toDate = new Date(to).toString('YYYY-MM-DD')
-  const overlapGoals = await fetch (`/api/goal/overlap/${fromDate}..${toDate}`)
-  const overlapGoalsJson = await overlapGoals.json ()
-  return overlapGoalsJson.data
+  const [fromDate, toDate] = [new Date(from).toString('YYYY-MM-DD'),new Date(to).toString('YYYY-MM-DD')] 
+  return await fetch (`/api/goal/overlap/${fromDate}..${toDate}`)
+    .then (res => res.json ())
+    .then (json => json.data)
 } 
 
 
@@ -34,7 +29,7 @@ async function submitBudget (event) {
       goals: goals
     })
   }
-  fetch ('/api/budget/create', fetchOpts)
+  await fetch ('/api/budget/create', fetchOpts)
   window.location = '/budget'
 }
 
@@ -46,7 +41,7 @@ export default function CreateBudget () {
         <HeaderNav>
           <HeaderNavLink caption="Back home" link="/budget" />
         </HeaderNav>
-        <HeaderButton onClickHandler={cancelCreation} text="Cancel"/>
+        <HeaderButton text="Cancel" href="/budget" />
       </Header>
       <ActionPane image="/images/undraw_Time_management_re_tk5w.svg">
         <FormCreateBudget onSubmitHandler={submitBudget}  />

@@ -1,14 +1,16 @@
-import dbConnect from '../../../lib/mongo'
-import Budget from '../../../models/budget'
+import withDatabase from '../../../middleware/withDatabase'
+import { Budget } from '../../../models/models'
 
 
-export default async function handler (req,res) {
-    await dbConnect ()    
+async function handler(req, res) {
     try {
-        const collection = await Budget.find ().populate ({path:'goals', model:'Goal'})
-        res.status (200).json ({sucess:true, data:collection})
+        const collection = await Budget.find()
+        res.status(200).json({ sucess: true, data: collection })
     }
     catch (e) {
-        res.status (400).json({success:false})
+        res.status(400).json({ success: false, reason: e.message, data: null })
     }
 }
+
+
+export default withDatabase(handler)

@@ -1,10 +1,7 @@
 import Image from 'next/image'
 
 
-import styles from './actionPane.module.css'
-
-
-export default function ActionPane ({ image, children }) {
+export default function ActionPane({ image, children }) {
     return (
         <section className="text-gray-600 body-font relative">
             <div className="container px-5 mx-auto flex sm:flex-nowrap flex-wrap">

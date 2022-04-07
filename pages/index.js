@@ -1,31 +1,32 @@
-import Layout from '../components/layout'
-import Header from '../components/header'
-import HeaderNav from '../components/headerNav'
-import HeaderNavLink from '../components/headerNavLink'
-import Hero from '../components/hero'
+import { Layout, Hero, Error, GrayButton, BlueButton } from '../components/ux'
 
-export async function getStaticProps () {
-  const auth = false
 
+export async function getStaticProps() {
+  const auth = true
+  const error = {
+    image: "/images/undraw_fixing_bugs_w7gi.svg",
+    title: "Generic error",
+    message: "Everybody make mistakes... Although I am not actually a person =\\"
+  }
   return {
     props: {
+      error: null,
       auth: auth
     }
   }
 }
 
-export default function Home({auth}) {
+
+export default function Index({ error, auth }) {
+  if (error) {
+    return <Error image={error.image} title={error.title} message={error.message} />
+  }
   return (
     <Layout>
-      {auth &&
-        <Header>
-          <HeaderNav>
-            <HeaderNavLink caption="Budgets" link="/budget" />
-            <HeaderNavLink caption="Goals" link="/goal" />
-          </HeaderNav>
-        </Header>
-      }
-      <Hero />
+      <Hero image="/images/undraw_investment_data_re_sh9x.svg" title="THE BUDGET" text="Define your goals and keep track of incomes and expenses through budgeting periods.">
+        <BlueButton text="Sign up" href="#"/>        
+        <GrayButton text="Sign in" href="/home" />
+      </Hero>
     </Layout>
   )
 }

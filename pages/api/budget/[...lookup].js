@@ -1,5 +1,5 @@
-import dbConnect from '../../../lib/mongo'
 import Budget from '../../../models/budget'
+import withDatabase from '../../../middleware/withDatabase'
 import withLookup from '../../../middleware/withLookup'
 
 /**
@@ -8,8 +8,7 @@ import withLookup from '../../../middleware/withLookup'
  * @param {*} req Request
  * @param {*} res Response
  */
-async function handler(req, res) {
-    await dbConnect()
+async function handler(req, res) {    
     try {    
         const lookup = req.lookup
         const overlap = await lookup.overlap
@@ -28,4 +27,4 @@ async function handler(req, res) {
     }
 }
 
-export default withLookup(handler)
+export default withDatabase (withLookup (handler))

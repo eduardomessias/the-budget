@@ -1,7 +1,9 @@
 import 'tailwindcss/tailwind.css'
 
-function MyApp({ Component, pageProps }) {
+
+function TheBudget({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
 
-export default MyApp
+
+export default TheBudget

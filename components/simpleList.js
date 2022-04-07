@@ -1,4 +1,4 @@
-export default function SimpleList ({ title, subTitle, children }) {
+export default function SimpleList({ title, subTitle, children }) {
     return (
         <section className="text-gray-600 body-font overflow-hidden">
             <div className="flex flex-col text-center w-full">

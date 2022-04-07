@@ -1,4 +1,23 @@
-# Next.js + Tailwind CSS Example
+# The Budget
+
+## Operations
+user/signup
+user/signin
+user/[id]/budget
+user/[id]/budget/active
+user/[id]/transaction
+user/[id]/transaction/create
+user/[id]/transaction/expense
+user/[id]/transaction/expense/create
+user/[id]/transaction/income
+user/[id]/transaction/income/create
+budget/
+budget/[id]/active
+budget/create
+
+
+
+# Next.js + Tailwind CSS
 
 This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v2.2)](https://blog.tailwindcss.com/tailwindcss-2-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
 

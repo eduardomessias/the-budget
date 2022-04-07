@@ -1,26 +1,28 @@
-import dbConnect from '../../../lib/mongo'
+import withDatabase from '../../../middleware/withDatabase'
 import Budget from '../../../models/budget'
 
 
-export default async function handler (req, res) {
-    if (req.method === 'POST') {
-        await dbConnect ()
+async function syncBudget (budgets, goal) {
+    budgets.forEach(async (budget)=> {
+        const budgetModel = await Budget.findOne ({_id:budget._id})
+        budgetModel.goals.push(goal)
+        await budgetModel.save ()
+    })
+}
+
+
+async function handler (req, res) {
+    if (req.method === 'POST') {        
         try {
-            const budgets = JSON.parse(req.body.budgets)
-            const goal = req.body.goal
-            for (let budget in budgets) {
-                const b = await Budget.find({_id:budget._id})
-                if (b) {
-                    b.goals.push(goal)
-                    await b.save ()
-                }
-            }
-            const doc = await Budget.save
-            res.status (200).json ({ success: true, data: doc })
+            await syncBudget (req.body.budgets, req.body.goal)
+            res.status (200).json ({ success: true, data: budgets })
         } catch (error) {
-            res.status (400).json ({ success: false })
+            res.status (400).json ({ success: false, error: error })
         }
     } else {
         res.status (400).send ({success: false, message: "Only POST requests allowed"})
     }
 }
+
+
+export default withDatabase (handler)
